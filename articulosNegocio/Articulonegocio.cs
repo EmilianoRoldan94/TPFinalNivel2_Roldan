@@ -60,17 +60,30 @@ namespace business
             }
 
         }
-        public void agregar(Articulo nuevo)
+        public void Agregar(Articulo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("");
+                datos.setearConsulta("Insert into ARTICULOS (Codigo,Nombre,Descripcion,IdMarca,IdCategoria,ImagenUrl,Precio)values(@Codigo,@Nombre,@Descripcion,@IdMarca,@IdCategoria,@ImagenUrl,@Precio)");
+                datos.setearParametro("@Codigo", nuevo.CodigoArticulo);
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Descripcion", nuevo.Descripcion);
+                datos.setearParametro("@IdMarca", nuevo.Marca.Id);
+                datos.setearParametro("@IdCategoria", nuevo.Categoria.Id);
+                datos.setearParametro("@ImagenUrl", nuevo.UrlImagen);
+                datos.setearParametro("@Precio", nuevo.Precio);
+
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
 
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
         public void eliminar(int Id) 

@@ -46,6 +46,7 @@ namespace presentacion
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            Articulo articulo = null;
             articuloNegocio negocio = new articuloNegocio();
             try
             {
@@ -61,7 +62,7 @@ namespace presentacion
                 articulo.Categoria = (MarcaCat)cbxCategoria.SelectedItem;
                 articulo.Marca = (MarcaCat)cbxMarca.SelectedItem;
 
-                negocio.agregar(articulo);
+                negocio.Agregar(articulo);
                 MessageBox.Show("Artículo agregado correctamente!");
             }
             catch (Exception ex)

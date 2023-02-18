@@ -134,12 +134,14 @@
             // 
             // cbxMarca
             // 
+            this.cbxMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cbxMarca, "cbxMarca");
             this.cbxMarca.FormattingEnabled = true;
             this.cbxMarca.Name = "cbxMarca";
             // 
             // cbxCategoria
             // 
+            this.cbxCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cbxCategoria, "cbxCategoria");
             this.cbxCategoria.FormattingEnabled = true;
             this.cbxCategoria.Name = "cbxCategoria";

@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pbxArticulo = new System.Windows.Forms.PictureBox();
             this.btnAlta = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVistaPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.SuspendLayout();
@@ -115,11 +116,22 @@
             this.btnAlta.UseVisualStyleBackColor = true;
             this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
             // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(1084, 343);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(244, 35);
+            this.btnModificar.TabIndex = 10;
+            this.btnModificar.Text = "Modificar Articulo";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1354, 616);
+            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.pbxArticulo);
             this.Controls.Add(this.label1);
@@ -147,6 +159,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pbxArticulo;
         private System.Windows.Forms.Button btnAlta;
+        private System.Windows.Forms.Button btnModificar;
     }
 }
 

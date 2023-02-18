@@ -92,6 +92,15 @@ namespace presentacion
             }
         }
 
-        
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvVistaPrincipal.CurrentRow.DataBoundItem;
+
+            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
+            modificar.ShowDialog();
+            cargar();
+
+        }
     }
 }

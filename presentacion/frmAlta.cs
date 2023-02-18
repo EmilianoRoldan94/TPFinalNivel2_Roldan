@@ -21,6 +21,12 @@ namespace presentacion
         {
             InitializeComponent();
         }
+        public frmAltaArticulo(Articulo articulo)
+        {
+            InitializeComponent();
+            this.articulo = articulo;
+            Text = "Modificar Articulo";
+        }
 
         private void frmAltaArticulo_Load(object sender, EventArgs e)
         {
@@ -35,8 +41,18 @@ namespace presentacion
                 cbxMarca.ValueMember= "Id";
                 cbxMarca.DisplayMember = "Descripcion";
 
-                //falta para modificar
+                if (articulo != null)
+                {
+                    tbxCodigo.Text = articulo.CodigoArticulo;
+                    tbxNombre.Text = articulo.Nombre;
+                    tbxDescripcion.Text = articulo.Descripcion;
+                    tbxPrecio.Text = articulo.Precio.ToString();
+                    tbxUrlImagen.Text = articulo.UrlImagen;
+                    cargarImagen(articulo.UrlImagen);
 
+                    cbxMarca.SelectedValue = articulo.Marca.Id;
+                    cbxCategoria.SelectedValue = articulo.Categoria.Id;                    
+                }
             }
             catch (Exception ex)
             {
@@ -46,7 +62,6 @@ namespace presentacion
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Articulo articulo = null;
             articuloNegocio negocio = new articuloNegocio();
             try
             {
@@ -62,8 +77,17 @@ namespace presentacion
                 articulo.Categoria = (MarcaCat)cbxCategoria.SelectedItem;
                 articulo.Marca = (MarcaCat)cbxMarca.SelectedItem;
 
-                negocio.Agregar(articulo);
-                MessageBox.Show("Artículo agregado correctamente!");
+                if (articulo.Id != 0)
+                {
+                    negocio.modificar(articulo);
+                    MessageBox.Show("Modificado exitosamente");
+                }
+                else
+                {
+                    negocio.Agregar(articulo);
+                    MessageBox.Show("Agregado exitosamente");
+                }
+                Close();
             }
             catch (Exception ex)
             {

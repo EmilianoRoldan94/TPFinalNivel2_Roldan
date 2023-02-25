@@ -28,27 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblFiltroR = new System.Windows.Forms.Label();
             this.dgvVistaPrincipal = new System.Windows.Forms.DataGridView();
-            this.tbxFiltroRapido = new System.Windows.Forms.TextBox();
             this.btnEliminarSeleccion = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pbxArticulo = new System.Windows.Forms.PictureBox();
             this.btnAlta = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.btnDetalle = new System.Windows.Forms.Button();
+            this.btnFiltrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVistaPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblFiltroR
-            // 
-            this.lblFiltroR.AutoSize = true;
-            this.lblFiltroR.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFiltroR.Location = new System.Drawing.Point(298, 9);
-            this.lblFiltroR.Name = "lblFiltroR";
-            this.lblFiltroR.Size = new System.Drawing.Size(60, 25);
-            this.lblFiltroR.TabIndex = 0;
-            this.lblFiltroR.Text = "Filtro:";
             // 
             // dgvVistaPrincipal
             // 
@@ -62,26 +52,19 @@
             this.dgvVistaPrincipal.RowHeadersWidth = 51;
             this.dgvVistaPrincipal.RowTemplate.Height = 24;
             this.dgvVistaPrincipal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVistaPrincipal.Size = new System.Drawing.Size(1028, 549);
+            this.dgvVistaPrincipal.Size = new System.Drawing.Size(751, 548);
             this.dgvVistaPrincipal.TabIndex = 1;
             this.dgvVistaPrincipal.SelectionChanged += new System.EventHandler(this.dgvVistaPrincipal_SelectionChanged_1);
             // 
-            // tbxFiltroRapido
-            // 
-            this.tbxFiltroRapido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxFiltroRapido.Location = new System.Drawing.Point(364, 6);
-            this.tbxFiltroRapido.Name = "tbxFiltroRapido";
-            this.tbxFiltroRapido.Size = new System.Drawing.Size(288, 30);
-            this.tbxFiltroRapido.TabIndex = 3;
-            // 
             // btnEliminarSeleccion
             // 
-            this.btnEliminarSeleccion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEliminarSeleccion.Location = new System.Drawing.Point(1084, 572);
+            this.btnEliminarSeleccion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEliminarSeleccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarSeleccion.Location = new System.Drawing.Point(795, 571);
             this.btnEliminarSeleccion.Name = "btnEliminarSeleccion";
             this.btnEliminarSeleccion.Size = new System.Drawing.Size(244, 32);
             this.btnEliminarSeleccion.TabIndex = 6;
-            this.btnEliminarSeleccion.Text = "Eliminar Selección";
+            this.btnEliminarSeleccion.Text = "Eliminar Artículo";
             this.btnEliminarSeleccion.UseVisualStyleBackColor = true;
             this.btnEliminarSeleccion.Click += new System.EventHandler(this.btnEliminarSeleccion_Click);
             // 
@@ -98,7 +81,7 @@
             // 
             this.pbxArticulo.AccessibleDescription = "";
             this.pbxArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbxArticulo.Location = new System.Drawing.Point(1084, 55);
+            this.pbxArticulo.Location = new System.Drawing.Point(795, 55);
             this.pbxArticulo.Name = "pbxArticulo";
             this.pbxArticulo.Size = new System.Drawing.Size(244, 228);
             this.pbxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -108,7 +91,9 @@
             // 
             // btnAlta
             // 
-            this.btnAlta.Location = new System.Drawing.Point(1084, 302);
+            this.btnAlta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAlta.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlta.Location = new System.Drawing.Point(795, 339);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(244, 35);
             this.btnAlta.TabIndex = 9;
@@ -118,27 +103,52 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(1084, 343);
+            this.btnModificar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.Location = new System.Drawing.Point(795, 380);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(244, 35);
             this.btnModificar.TabIndex = 10;
-            this.btnModificar.Text = "Modificar Articulo";
+            this.btnModificar.Text = "Modificar Artículo";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // btnDetalle
+            // 
+            this.btnDetalle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDetalle.Location = new System.Drawing.Point(795, 421);
+            this.btnDetalle.Name = "btnDetalle";
+            this.btnDetalle.Size = new System.Drawing.Size(244, 35);
+            this.btnDetalle.TabIndex = 11;
+            this.btnDetalle.Text = "Ver Detalle de Articulo";
+            this.btnDetalle.UseVisualStyleBackColor = true;
+            this.btnDetalle.Click += new System.EventHandler(this.btnDetalle_Click);
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrar.Location = new System.Drawing.Point(654, 12);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(109, 33);
+            this.btnFiltrar.TabIndex = 12;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = true;
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1354, 616);
+            this.ClientSize = new System.Drawing.Size(1072, 615);
+            this.Controls.Add(this.btnFiltrar);
+            this.Controls.Add(this.btnDetalle);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.pbxArticulo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnEliminarSeleccion);
-            this.Controls.Add(this.tbxFiltroRapido);
             this.Controls.Add(this.dgvVistaPrincipal);
-            this.Controls.Add(this.lblFiltroR);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Catálogus";
@@ -151,15 +161,14 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblFiltroR;
         private System.Windows.Forms.DataGridView dgvVistaPrincipal;
-        private System.Windows.Forms.TextBox tbxFiltroRapido;
         private System.Windows.Forms.Button btnEliminarSeleccion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pbxArticulo;
         private System.Windows.Forms.Button btnAlta;
         private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnDetalle;
+        private System.Windows.Forms.Button btnFiltrar;
     }
 }
 

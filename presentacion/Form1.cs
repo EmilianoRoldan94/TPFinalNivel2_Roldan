@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using business;
 using items;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace presentacion
 {
     public partial class frmPrincipal : Form
     {
         private List<Articulo> listaArticulo;
+        private List<Articulo> listaFiltrada;
         public frmPrincipal()
         {
             InitializeComponent();
@@ -23,13 +25,15 @@ namespace presentacion
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             cargar();
-
         }
 
         private void dgvVistaPrincipal_SelectionChanged_1(object sender, EventArgs e)
         {
-            Articulo seleccionado = (Articulo)dgvVistaPrincipal.CurrentRow.DataBoundItem;
-            cargarImagen(seleccionado.UrlImagen);
+            if (dgvVistaPrincipal.CurrentRow != null) // Evita crash por falta de rows
+            {
+                Articulo seleccionado = (Articulo)dgvVistaPrincipal.CurrentRow.DataBoundItem;
+                cargarImagen(seleccionado.UrlImagen);
+            }
         }
 
         private void btnEliminarSeleccion_Click(object sender, EventArgs e)
@@ -60,37 +64,7 @@ namespace presentacion
             cargar();
         }
 
-        // *** Funciones utilizadas ***
-
-        private void cargar() 
-        {
-            articuloNegocio negocio = new articuloNegocio();
-            
-            try
-            {
-                listaArticulo = negocio.listar();
-                dgvVistaPrincipal.DataSource = listaArticulo;
-                dgvVistaPrincipal.Columns["UrlImagen"].Visible = false;
-                dgvVistaPrincipal.Columns["Id"].Visible = false;
-                cargarImagen(listaArticulo[0].UrlImagen);
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-        }
-        private void cargarImagen(string imagen)
-        {
-            try
-            {
-                pbxArticulo.Load(imagen);
-            }
-            catch (Exception ex)
-            {
-                pbxArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
-            }
-        }
+        
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -107,10 +81,91 @@ namespace presentacion
         {
             Articulo seleccionado;
             seleccionado = (Articulo)dgvVistaPrincipal.CurrentRow.DataBoundItem;
-
+            
             frmDetalle detalle = new frmDetalle(seleccionado);
             detalle.ShowDialog();
             cargar();
+        }
+
+        private void ocultarColumnas() 
+        {
+            dgvVistaPrincipal.Columns["UrlImagen"].Visible = false;
+            dgvVistaPrincipal.Columns["Id"].Visible = false;
+        }
+
+        // Lógica filtros #########################################################
+        private void tbxFiltroCodigo_TextChanged(object sender, EventArgs e)
+        {
+            filtrarDatos();
+            ocultarColumnas();
+        }
+        private void tbxFiltroNombre_TextChanged(object sender, EventArgs e)
+        {
+            filtrarDatos();
+            ocultarColumnas();
+        }
+
+        private void tbxFiltroDescripcion_TextChanged(object sender, EventArgs e)
+        {
+            filtrarDatos();
+            ocultarColumnas();
+        }
+
+
+
+        private void btnResetearFiltros_Click(object sender, EventArgs e)
+        {
+            // Limpio textbox's
+            tbxFiltroNombre.Clear();
+            tbxFiltroDescripcion.Clear();
+        }
+
+        // ********* Funciones utilizadas *********
+
+        private void cargar()
+        {
+            articuloNegocio negocio = new articuloNegocio();
+
+            try
+            {
+                listaArticulo = negocio.listar();
+                listaFiltrada = listaArticulo;
+                dgvVistaPrincipal.DataSource = listaArticulo;
+                ocultarColumnas();
+                cargarImagen(listaArticulo[0].UrlImagen);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbxArticulo.Load(imagen);
+            }
+            catch (Exception)
+            {
+                pbxArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
+        }
+        private void filtrarDatos() // Faltan criterios por falta de tiempo
+        {
+
+            string fltNombre = tbxFiltroNombre.Text.ToUpper();
+            string fltDescripcion = tbxFiltroDescripcion.Text.ToUpper();
+            string fltCodigo = tbxFiltroCodigo.Text.ToUpper();
+
+
+            // Aplico filtros según corresponda
+            listaFiltrada = listaArticulo.Where(d => d.CodigoArticulo.ToUpper().Contains(fltCodigo)
+                                                           && d.Nombre.ToUpper().Contains(fltNombre)
+                                                           && d.Descripcion.ToUpper().Contains(fltDescripcion)).ToList();
+
+            // Actualizo la dgv
+            dgvVistaPrincipal.DataSource = listaFiltrada;
         }
     }
 }
